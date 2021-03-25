@@ -25,13 +25,15 @@ public class User extends AbstractEntity {
         this.username = username;
         this.pwHash = encoder.encode(password);
     }
-
+    public boolean isMatchingPassword(String password) {
+        return encoder.matches(password, pwHash);
+    }
     public String getUsername() {
         return username;
     }
-    public boolean isMatchingPassword(String password) {
-        String candidateHash = encoder.encode(password);
-        return candidateHash.equals(pwHash);
-    }
+//    public boolean isMatchingPassword(String password) {
+//        String candidateHash = encoder.encode(password);
+//        return candidateHash.equals(pwHash);
+//    }
 
 }
